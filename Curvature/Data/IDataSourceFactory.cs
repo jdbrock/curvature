@@ -10,6 +10,7 @@ namespace Curvature
     {
         String Name { get; }
 
+        void Initialise();
         IDataSource OpenInteractive();
     }
 }

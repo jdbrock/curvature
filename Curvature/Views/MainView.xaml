@@ -24,11 +24,12 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Background="{StaticResource BaseForegroundBrush}" MinWidth="200">
+            <Grid Grid.Column="0" Background="{StaticResource BaseForegroundBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -46,54 +47,53 @@
                 </StackPanel>
 
                 <Border Grid.Row="1" Margin="12,0,12,0" CornerRadius="2" Background="#20FFFFFF">
-                    <ItemsControl ItemsSource="{Binding DataSources}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Vertical" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal" Height="24" VerticalAlignment="Top" Margin="15,5,15,3">
-                                        <Viewbox Height="12" Width="12">
-                                            <Canvas Width="34" Height="38">
-                                                <Path Width="34" Height="38" Stretch="Fill" Fill="White" Data="F1 M 38,19C 47.3888,19 55,21.0147 55,23.5038L 55,25.5C 55,27.9853 47.3888,30 38,30C 28.6112,30 21,27.9853 21,25.5L 21,23.5C 21,21.0147 28.6112,19 38,19 Z M 55,52.5C 55,54.9853 47.3888,57 38,57C 28.6112,57 21,54.9853 21,52.5L 21,46.5C 21,48.9853 28.6112,51 38,51C 47.384,51 54.9921,48.9874 55,46.5039L 55,52.5 Z M 55,43.5C 55,45.9853 47.3888,48 38,48C 28.6112,48 21,45.9853 21,43.5L 21,37.5C 21,39.9853 28.6112,42 38,42C 47.384,42 54.9921,39.9874 55,37.5038L 55,43.5 Z M 55,34.5C 55,36.9853 47.3888,39 38,39C 28.6112,39 21,36.9853 21,34.5L 21,28.5C 21,30.9853 28.6112,33 38,33C 47.384,33 54.9921,30.9874 55,28.5038L 55,34.5 Z "/>
-                                            </Canvas>
-                                        </Viewbox>
+                    <ScrollViewer Margin="0,5,3,5" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
 
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12" Foreground="White" />
+                        <ItemsControl ItemsSource="{Binding DataSources}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Height="24" VerticalAlignment="Top" Margin="15,0,15,3">
+                                            <Viewbox Height="12" Width="12">
+                                                <Canvas Width="34" Height="38">
+                                                    <Path Width="34" Height="38" Stretch="Fill" Fill="White" Data="F1 M 38,19C 47.3888,19 55,21.0147 55,23.5038L 55,25.5C 55,27.9853 47.3888,30 38,30C 28.6112,30 21,27.9853 21,25.5L 21,23.5C 21,21.0147 28.6112,19 38,19 Z M 55,52.5C 55,54.9853 47.3888,57 38,57C 28.6112,57 21,54.9853 21,52.5L 21,46.5C 21,48.9853 28.6112,51 38,51C 47.384,51 54.9921,48.9874 55,46.5039L 55,52.5 Z M 55,43.5C 55,45.9853 47.3888,48 38,48C 28.6112,48 21,45.9853 21,43.5L 21,37.5C 21,39.9853 28.6112,42 38,42C 47.384,42 54.9921,39.9874 55,37.5038L 55,43.5 Z M 55,34.5C 55,36.9853 47.3888,39 38,39C 28.6112,39 21,36.9853 21,34.5L 21,28.5C 21,30.9853 28.6112,33 38,33C 47.384,33 54.9921,30.9874 55,28.5038L 55,34.5 Z "/>
+                                                </Canvas>
+                                            </Viewbox>
+
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12" Foreground="White" TextTrimming="CharacterEllipsis" />
+                                        </StackPanel>
+
+                                        <ItemsControl ItemsSource="{Binding Tables}" Margin="30,0,15,0">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Height="24" VerticalAlignment="Top">
+                                                        <Viewbox Height="12" Width="12">
+                                                            <Canvas Width="42.75" Height="42.75">
+                                                                <Path Width="42.75" Height="42.75" Stretch="Fill" Fill="White" Data="F1 M 38,27.1542C 43.99,27.1542 48.8458,32.01 48.8458,38C 48.8458,43.99 43.99,48.8458 38,48.8458C 32.01,48.8458 27.1542,43.99 27.1542,38C 27.1542,32.01 32.01,27.1542 38,27.1542 Z M 38,16.625C 49.8051,16.625 59.375,26.1949 59.375,38C 59.375,49.8051 49.8051,59.375 38,59.375C 26.1949,59.375 16.625,49.8051 16.625,38C 16.625,26.1949 26.1949,16.625 38,16.625 Z M 38,20.5833C 28.381,20.5833 20.5833,28.381 20.5833,38C 20.5833,47.619 28.381,55.4167 38,55.4167C 47.6189,55.4167 55.4167,47.619 55.4167,38C 55.4167,28.381 47.619,20.5833 38,20.5833 Z "/>
+                                                            </Canvas>
+                                                        </Viewbox>
+
+                                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12" Foreground="White" TextTrimming="CharacterEllipsis" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
                                     </StackPanel>
-
-                                    <ItemsControl ItemsSource="{Binding Tables}" Margin="30,0,15,0">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Vertical" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal" Height="24" VerticalAlignment="Top">
-                                                    <Viewbox Height="12" Width="12">
-                                                        <Canvas Width="42.75" Height="42.75">
-                                                            <Path Width="42.75" Height="42.75" Stretch="Fill" Fill="White" Data="F1 M 38,27.1542C 43.99,27.1542 48.8458,32.01 48.8458,38C 48.8458,43.99 43.99,48.8458 38,48.8458C 32.01,48.8458 27.1542,43.99 27.1542,38C 27.1542,32.01 32.01,27.1542 38,27.1542 Z M 38,16.625C 49.8051,16.625 59.375,26.1949 59.375,38C 59.375,49.8051 49.8051,59.375 38,59.375C 26.1949,59.375 16.625,49.8051 16.625,38C 16.625,26.1949 26.1949,16.625 38,16.625 Z M 38,20.5833C 28.381,20.5833 20.5833,28.381 20.5833,38C 20.5833,47.619 28.381,55.4167 38,55.4167C 47.6189,55.4167 55.4167,47.619 55.4167,38C 55.4167,28.381 47.619,20.5833 38,20.5833 Z "/>
-                                                        </Canvas>
-                                                    </Viewbox>
-
-                                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12" Foreground="White" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-          
-                                
-                                
-                                
-                                
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        
+                    </ScrollViewer>
                 </Border>
 
                 <Button Grid.Row="2" Margin="15,5,15,5" Style="{StaticResource AddDataSourceButtonStyle}" Command="{Binding AddDataSourceCommand}">
@@ -102,8 +102,22 @@
                
             </Grid>
 
-            <Grid Grid.Column="1">
-
+            <GridSplitter Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Stretch"
+                Background="#10000000" 
+                ShowsPreview="true"
+                Width="5"/>
+            
+            <Grid Grid.Column="2">
+                <TabControl>
+                    <TabControl>
+                        <!--<TabItem Header="Preview" />
+                        <TabItem Header="Data" />
+                        <TabItem Header="Query" />
+                        <TabItem Header="Tools" />-->
+                    </TabControl>
+                </TabControl>
             </Grid>
 
         </Grid>

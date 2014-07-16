@@ -1,6 +1,7 @@
 ﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,20 +12,31 @@ namespace Curvature
     [ImplementPropertyChanged]
     public class MainViewModel
     {
-        public IList<IDataSourceFactory> DataSourceFactories { get; private set; }
-        public IList<IDataSource> DataSources { get; private set; }
+        public ObservableCollection<IDataSourceFactory> DataSourceFactories { get; private set; }
+        public ObservableCollection<IDataSource> DataSources { get; private set; }
 
         public ICommand AddDataSourceCommand { get; private set; }
 
         public MainViewModel()
         {
-            DataSourceFactories = new List<IDataSourceFactory>();
-            DataSourceFactories.Add(new SpatiaLiteDataSourceFactory());
+            DataSourceFactories = new ObservableCollection<IDataSourceFactory>();
 
-            DataSources = new List<IDataSource>();
-            DataSources.Add(new DummyDataSource());
+            RegisterDataSourceFactories();
+
+            DataSources = new ObservableCollection<IDataSource>();
+            //DataSources.Add(new DummyDataSource());
 
             AddDataSourceCommand = new StandardCommand(DoAddDataSourceCommand);
+        }
+
+        private void RegisterDataSourceFactories()
+        {
+            // Register SpatiaLite.
+            var spatialite = new SpatiaLiteDataSourceFactory();
+            DataSourceFactories.Add(spatialite);
+
+            // Initialise.
+            spatialite.Initialise();
         }
 
         private void DoAddDataSourceCommand(Object inParameter)
