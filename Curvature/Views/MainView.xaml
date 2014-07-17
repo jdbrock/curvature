@@ -45,13 +45,13 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Height="32" VerticalAlignment="Top" Margin="15,5,15,5">
-                    <Viewbox Height="12" Width="12">
+                    <Viewbox Height="{StaticResource IconSize}" Width="{StaticResource IconSize}">
                         <Canvas Width="41.1667" Height="44.3333">
                             <Path Width="41.1667" Height="44.3333" Stretch="Fill" Fill="White" Data="F1 M 38,15.8334L 58.5833,23.75L 58.5833,30.0833L 38,38L 17.4167,30.0833L 17.4166,23.75L 38,15.8334 Z M 58.5833,44.3333L 58.5833,52.25L 38,60.1667L 17.4167,52.25L 17.4167,44.3333L 21.5333,45.9167L 38,52.25L 54.4667,45.9167L 58.5833,44.3333 Z M 58.5833,33.25L 58.5833,41.1667L 38,49.0833L 17.4167,41.1667L 17.4167,33.25L 21.5333,34.8333L 38,41.1667L 54.4666,34.8333L 58.5833,33.25 Z "/>
                         </Canvas>
                     </Viewbox>
 
-                    <TextBlock Text="CURRENT DATA SOURCES" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12" Foreground="White" />
+                    <TextBlock Text="CURRENT DATA SOURCES" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="{StaticResource FontSize}" Foreground="White" />
                 </StackPanel>
 
                 <Border Grid.Row="1" Margin="12,0,12,0" CornerRadius="2" Background="#20FFFFFF" BorderThickness="4" BorderBrush="#10FFFFFF">
@@ -69,13 +69,13 @@
                                     <StackPanel Orientation="Vertical">
                                         
                                         <StackPanel Orientation="Horizontal" Height="24" VerticalAlignment="Top" Margin="15,0,15,3">
-                                            <Viewbox Height="12" Width="12">
+                                            <Viewbox Height="{StaticResource IconSize}" Width="{StaticResource IconSize}">
                                                 <Canvas Width="34" Height="38">
                                                     <Path Width="34" Height="38" Stretch="Fill" Fill="White" Data="F1 M 38,19C 47.3888,19 55,21.0147 55,23.5038L 55,25.5C 55,27.9853 47.3888,30 38,30C 28.6112,30 21,27.9853 21,25.5L 21,23.5C 21,21.0147 28.6112,19 38,19 Z M 55,52.5C 55,54.9853 47.3888,57 38,57C 28.6112,57 21,54.9853 21,52.5L 21,46.5C 21,48.9853 28.6112,51 38,51C 47.384,51 54.9921,48.9874 55,46.5039L 55,52.5 Z M 55,43.5C 55,45.9853 47.3888,48 38,48C 28.6112,48 21,45.9853 21,43.5L 21,37.5C 21,39.9853 28.6112,42 38,42C 47.384,42 54.9921,39.9874 55,37.5038L 55,43.5 Z M 55,34.5C 55,36.9853 47.3888,39 38,39C 28.6112,39 21,36.9853 21,34.5L 21,28.5C 21,30.9853 28.6112,33 38,33C 47.384,33 54.9921,30.9874 55,28.5038L 55,34.5 Z "/>
                                                 </Canvas>
                                             </Viewbox>
 
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12" Foreground="White" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="{StaticResource FontSize}" Foreground="White" TextTrimming="CharacterEllipsis" />
                                         </StackPanel>
 
                                         <ItemsControl ItemsSource="{Binding ViewNonSystemTables.View}" Margin="30,0,15,0" FocusVisualStyle="{x:Null}">
@@ -90,7 +90,7 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal" Height="24" VerticalAlignment="Top">
                                                         <Control Style="{StaticResource TableIconStyle}" />
-                                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12" Foreground="#AAFFFFFF" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="{StaticResource FontSize}" Foreground="#AAFFFFFF" TextTrimming="CharacterEllipsis" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
@@ -106,7 +106,7 @@
                     </ScrollViewer>
                 </Border>
 
-                <Button Grid.Row="2" Margin="15,5,15,5" Style="{StaticResource AddDataSourceButtonStyle}" Command="{Binding AddDataSourceCommand}">
+                <Button Grid.Row="2" Margin="15,4,15,5" Style="{StaticResource AddDataSourceButtonStyle}" Command="{Binding AddDataSourceCommand}">
                    
                 </Button>
                
@@ -124,7 +124,11 @@
                     
                     <!-- Preview Map -->
                     <TabItem IsSelected="True" Style="{StaticResource PreviewTabItemStyle}">
-                       
+
+                        <Border Margin="9,-3,9,9" CornerRadius="2" Background="#05000000" BorderThickness="4" BorderBrush="#10000000">
+                            <TextBlock VerticalAlignment="Center" TextAlignment="Center" Text="NOT AVAILABLE" Foreground="#AAAAAA" FontSize="14" />
+                        </Border>
+
                     </TabItem>
                     
                     <!-- View Data -->
