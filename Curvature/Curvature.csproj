@@ -73,11 +73,16 @@
     <Compile Include="Data\IDataSource.cs" />
     <Compile Include="Data\IDataSourceFactory.cs" />
     <Compile Include="Data\IDataTable.cs" />
+    <Compile Include="Data\Implementations\Base\BaseDataSource.cs" />
     <Compile Include="Data\Implementations\Dummy\DummyDataSource.cs" />
     <Compile Include="Data\Implementations\Dummy\DummyDataTable.cs" />
     <Compile Include="Data\Implementations\SpatiaLite\SpatiaLiteDataSource.cs" />
     <Compile Include="Data\Implementations\SpatiaLite\SpatiaLiteDataSourceFactory.cs" />
     <Compile Include="Data\Implementations\SpatiaLite\SpatiaLiteDataTable.cs" />
+    <Compile Include="Data\Implementations\SpatiaLite\SpatiaLiteDataTableInternal.cs" />
+    <Compile Include="Utility\Collections\CollectionViewSource.cs" />
+    <Compile Include="Utility\Collections\SortDescription.cs" />
+    <Compile Include="Utility\Collections\SortDirection.cs" />
     <Compile Include="Utility\Commands\StandardCommand.cs" />
     <Compile Include="Utility\Extension Methods\IDbConnectionExtensions.cs" />
     <Compile Include="Utility\Extension Methods\ObjectExtensions.cs" />

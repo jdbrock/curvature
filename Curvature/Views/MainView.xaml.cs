@@ -26,5 +26,31 @@ namespace Curvature.Views
 
             DataContext = new MainViewModel();
         }
+
+        private void SystemTablesFilter(Object inSender, FilterEventArgs inArgs)
+        {
+            if (!(inArgs.Item is IDataTable))
+            {
+                inArgs.Accepted = true;
+                return;
+            }
+
+            var item = (IDataTable)inArgs.Item;
+
+            inArgs.Accepted = item.Type == DataTableType.System;
+        }
+
+        private void NonSystemTablesFilter(Object inSender, FilterEventArgs inArgs)
+        {
+            if (!(inArgs.Item is IDataTable))
+            {
+                inArgs.Accepted = true;
+                return;
+            }
+
+            var item = (IDataTable)inArgs.Item;
+
+            inArgs.Accepted = item.Type != DataTableType.System;
+        }
     }
 }

@@ -12,15 +12,8 @@ using System.Threading.Tasks;
 namespace Curvature
 {
     [ImplementPropertyChanged]
-    public class SpatiaLiteDataSource : IDataSource
+    public class SpatiaLiteDataSource : BaseDataSource
     {
-        // ===========================================================================
-        // = Public Properties
-        // ===========================================================================
-        
-        public String Name { get; private set; }
-        public ObservableCollection<IDataTable> Tables { get; private set; }
-
         // ===========================================================================
         // = Private Field
         // ===========================================================================
@@ -35,7 +28,6 @@ namespace Curvature
         public SpatiaLiteDataSource(String inFilePath)
         {
             Name = Path.GetFileName(inFilePath);
-            Tables = new ObservableCollection<IDataTable>();
 
             _filePath = inFilePath;
 
@@ -65,14 +57,33 @@ namespace Curvature
         {
             Tables.Clear();
 
-            var names = new List<String>();
+            var tables = new List<SpatiaLiteDataTableInternal>();
 
-            using (var reader = _connection.Query("SELECT name FROM sqlite_master WHERE type='table'"))
+            using (var reader = _connection.Query("SELECT type, name, tbl_name, rootpage, sql FROM sqlite_master WHERE type='table'"))
                 while (reader.Read())
-                    names.Add(reader.GetString(0));
+                    tables.Add(new SpatiaLiteDataTableInternal(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetInt64(3), reader.GetString(4)));
 
-            foreach (var name in names)
-                Tables.Add(new SpatiaLiteDataTable(name, DataTableType.Basic));
-        }     
+            foreach (var table in tables)
+                Tables.Add(new SpatiaLiteDataTable(table.Name, GetTableType(table)));
+        }
+
+        private DataTableType GetTableType(SpatiaLiteDataTableInternal inInternalTable)
+        {
+            if (inInternalTable.Type != "table" || inInternalTable.Name == "sqlite_sequence" || inInternalTable.Sql.Trim().StartsWith("INSERT INDEX", StringComparison.OrdinalIgnoreCase) ||
+                inInternalTable.Name == "geometry_columns" || inInternalTable.Name.StartsWith("idx_") || inInternalTable.Name == "spatial_ref_sys" || inInternalTable.Name == "geometry_columns_auth" ||
+                inInternalTable.Name == "virts_geometry_columns" || inInternalTable.Name == "views_geometry_columns")
+                return DataTableType.System;
+
+            if (inInternalTable.Sql.Contains("POLYGON"))
+                return DataTableType.Polygon;
+
+            if (inInternalTable.Sql.Contains("POINT"))
+                return DataTableType.Point;
+
+            if (inInternalTable.Sql.Contains("LINESTRING"))
+                return DataTableType.Line;
+
+            return DataTableType.Basic;
+        }
     }
 }

@@ -8,12 +8,6 @@ namespace Curvature
 {
     public static class Platform
     {
-        public static String Code
-        {
-            get
-            {
-                return IntPtr.Size == 4 ? "x86" : "x64";
-            }
-        }
+        public static String Code { get { return IntPtr.Size == 4 ? "x86" : "x64"; } }
     }
 }

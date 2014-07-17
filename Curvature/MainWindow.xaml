@@ -2,14 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Curvature" Height="600" Width="1024" FontFamily="Segoe UI Light" FontSize="16" Foreground="White" ResizeMode="CanResizeWithGrip" EnableDWMDropShadow="True" WindowStartupLocation="CenterScreen">
+        Title="Curvature" Height="720" Width="1280" FontFamily="Segoe UI Light" FontSize="16" Foreground="White" ResizeMode="CanResizeWithGrip" EnableDWMDropShadow="True" WindowStartupLocation="CenterScreen">
     
-    <Window.Resources>
-
-    </Window.Resources>
-    
-    <Frame Source="Views/MainView.xaml">
-        
-    </Frame>
+    <Frame Source="Views/MainView.xaml" />
    
 </mah:MetroWindow>

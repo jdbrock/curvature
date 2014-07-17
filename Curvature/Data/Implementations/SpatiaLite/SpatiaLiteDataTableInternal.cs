@@ -1,5 +1,4 @@
-﻿using PropertyChanged;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,24 +6,29 @@ using System.Threading.Tasks;
 
 namespace Curvature
 {
-    [ImplementPropertyChanged]
-    public class SpatiaLiteDataTable : IDataTable
+    public class SpatiaLiteDataTableInternal
     {
         // ===========================================================================
         // = Public Properties
         // ===========================================================================
         
+        public String Type { get; private set; }
         public String Name { get; private set; }
-        public DataTableType Type { get; private set; }
+        public String TableName { get; private set; }
+        public Int64 RootPage { get; private set; }
+        public String Sql { get; private set; }
 
         // ===========================================================================
         // = Construction
         // ===========================================================================
         
-        public SpatiaLiteDataTable(String inName, DataTableType inType)
+        public SpatiaLiteDataTableInternal(String inType, String inName, String inTableName, Int64 inRootPage, String inSql)
         {
-            Name = inName;
             Type = inType;
+            Name = inName;
+            TableName = inTableName;
+            RootPage = inRootPage;
+            Sql = inSql;
         }
     }
 }
