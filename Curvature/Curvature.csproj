@@ -37,8 +37,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageFileCache">
+      <HintPath>..\packages\XAML.MapControl.2.1.0\lib\net45\ImageFileCache.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.0.13.1.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MapControl.WPF">
+      <HintPath>..\packages\XAML.MapControl.2.1.0\lib\net45\MapControl.WPF.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.48.2.0\Lib\NET35\PropertyChanged.dll</HintPath>
@@ -76,6 +82,7 @@
     <Compile Include="Data\Implementations\Base\BaseDataSource.cs" />
     <Compile Include="Data\Implementations\Dummy\DummyDataSource.cs" />
     <Compile Include="Data\Implementations\Dummy\DummyDataTable.cs" />
+    <Compile Include="Data\Implementations\Extension Methods\IDataTableExtensions.cs" />
     <Compile Include="Data\Implementations\SpatiaLite\SpatiaLiteDataSource.cs" />
     <Compile Include="Data\Implementations\SpatiaLite\SpatiaLiteDataSourceFactory.cs" />
     <Compile Include="Data\Implementations\SpatiaLite\SpatiaLiteDataTable.cs" />

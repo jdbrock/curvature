@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -35,6 +36,19 @@ namespace Curvature
             ReadTables();
         }
 
+        // ===========================================================================
+        // = Public Methods
+        // ===========================================================================
+        
+        public override IDataReader Query(String inSql, params Object[] inParams)
+        {
+            return _connection.Query(inSql, inParams);
+        }
+
+        // ===========================================================================
+        // = Private Methods
+        // ===========================================================================
+        
         private void Connect()
         {
             // Set current working directory to the platform code (x86, x64, etc).
@@ -64,7 +78,7 @@ namespace Curvature
                     tables.Add(new SpatiaLiteDataTableInternal(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetInt64(3), reader.GetString(4)));
 
             foreach (var table in tables)
-                Tables.Add(new SpatiaLiteDataTable(table.Name, GetTableType(table)));
+                Tables.Add(new SpatiaLiteDataTable(this, table.Name, GetTableType(table)));
         }
 
         private DataTableType GetTableType(SpatiaLiteDataTableInternal inInternalTable)

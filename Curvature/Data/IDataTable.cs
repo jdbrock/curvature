@@ -9,5 +9,9 @@ namespace Curvature
     {
         String Name { get; }
         DataTableType Type { get; }
+
+        IDataSource Source { get; }
+
+        Boolean IsSelected { get; set; }
     }
 }

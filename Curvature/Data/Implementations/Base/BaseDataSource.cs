@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,5 +39,8 @@ namespace Curvature
             ViewSystemTables    = new CollectionViewSource<IDataTable>(Tables, new [] { new SortDescription<IDataTable>(X => X.Name) }, X => X.Type == DataTableType.System);
             ViewNonSystemTables = new CollectionViewSource<IDataTable>(Tables, new [] { new SortDescription<IDataTable>(X => X.Name) }, X => X.Type != DataTableType.System);
         }
+
+
+        public abstract IDataReader Query(String inSql, params Object[] inParams);       
     }
 }

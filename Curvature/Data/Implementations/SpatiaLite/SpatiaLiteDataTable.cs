@@ -13,16 +13,20 @@ namespace Curvature
         // ===========================================================================
         // = Public Properties
         // ===========================================================================
-        
+
+        public IDataSource Source { get; private set; }
         public String Name { get; private set; }
         public DataTableType Type { get; private set; }
+
+        public Boolean IsSelected { get; set; }
 
         // ===========================================================================
         // = Construction
         // ===========================================================================
         
-        public SpatiaLiteDataTable(String inName, DataTableType inType)
+        public SpatiaLiteDataTable(IDataSource inSource, String inName, DataTableType inType)
         {
+            Source = inSource;
             Name = inName;
             Type = inType;
         }
